@@ -53,12 +53,10 @@ bot.on("message", async (msg) => {
     }
 
     const logo = baseToken?.logoURI || token?.info?.imageUrl || null;
+    const logoText = logo ? `<a href="${logo}">🖼️ Token Logo</a>` : "";
 
-    // 🆕 Chart and Logo appear first
+    // ✅ Chart link moved back to bottom
     const msgText = `
-🔗 [View Chart](${token.url})
-${logo ? `<a href="${logo}">🖼️ Token Logo</a>` : ""}
-
 *${baseToken?.symbol || "N/A"}* — ${baseToken?.name || "Unknown"}
 
 💰 *Price:* $${Number(priceUsd ?? 0).toFixed(6)}
@@ -67,6 +65,9 @@ ${logo ? `<a href="${logo}">🖼️ Token Logo</a>` : ""}
 📊 *24h Volume:* $${(volume?.h24 ?? "N/A").toLocaleString()}
 🔢 *Decimals:* ${decimals}
 📦 *Supply:* ${supply}
+
+🔗 [View Chart](${token.url})
+${logoText}
 `;
 
     const keyboard = {
